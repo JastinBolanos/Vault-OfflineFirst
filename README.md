@@ -91,3 +91,8 @@ git clone [https://github.com/JastinBolanos/Boveda-KMP.git](https://github.com/J
 cd BovedaKMP
 
 ```
+
+**For Android:**
+- Open the project in Android Studio.
+- Select the `androidApp` configuration.
+- Press *Run*.
