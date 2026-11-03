@@ -87,8 +87,8 @@ sequenceDiagram
 The project includes a Gradle Wrapper, eliminating the need for complex configurations. **Clone, sync, and run.**
 
 ```bash
-git clone https://github.com/JastinBolanos/Boveda-KMP.git
-cd BovedaKMP
+git clone https://github.com/JastinBolanos/Vault-OfflineFirst
+cd Vault-OfflineFirst
 
 ```
 
