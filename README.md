@@ -2,7 +2,7 @@
   <img src="docs/assets/logo_bovedakmp.png" width="100" alt="Bóveda Logo">
 </p>
 
-<h1 align="center">Bóveda Android</h1>
+<h1 align="center">Vault-OfflineFirst</h1>
 
 <p align="center">
   <strong>Offline-First Synchronization Engine (Proof of Concept) built with Kotlin & Jetpack Compose for Android.</strong>
@@ -25,7 +25,7 @@
 
 ## Overview
 
-**Transparency note:** While Bóveda Android features a fintech interface, it is **not a financial application**. It is an architectural playground designed to showcase a custom **offline-first synchronization engine**. 
+**Transparency note:** While Vault features a fintech interface, it is **not a financial application**. It is an architectural playground designed to showcase a custom **offline-first synchronization engine**. 
 
 The UI serves purely as a shell to demonstrate how the underlying engine handles critical operations (like mock transactions) under intermittent or missing network connectivity, guaranteeing idempotency and zero data loss.
 
