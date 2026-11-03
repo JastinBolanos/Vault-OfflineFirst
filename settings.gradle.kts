@@ -1,4 +1,4 @@
-rootProject.name = "Boveda-KMP"
+rootProject.name = "Vault"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
@@ -28,4 +28,4 @@ dependencyResolutionManagement {
     }
 }
 
-include(":composeApp")
+include(":app")

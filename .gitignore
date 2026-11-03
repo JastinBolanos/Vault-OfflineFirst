@@ -1,52 +1,31 @@
 # ==================================================
-# BOVEDA KMP - .gitignore OFICIAL
-# Kotlin Multiplatform | Compose Multiplatform
-# Android + iOS | SQLDelight | Clean Architecture
+# Vault - Native Android (.gitignore)
+# Android (Kotlin & Jetpack Compose) | SQLDelight
 # ==================================================
 
-# --------------------------
-# GRADLE
-# --------------------------
+# Gradle
 .gradle/
 build/
 **/build/
+.build-outputs/
 gradle-app.setting
 .gradletasknamecache
 !gradle/wrapper/gradle-wrapper.jar
 !gradle/wrapper/gradle-wrapper.properties
 
-# --------------------------
-# KOTLIN / KMP
-# --------------------------
+# Kotlin & JVM
 .kotlin/
 **/*.kt~
 **/*.kts~
 
-# --------------------------
-# ANDROID
-# --------------------------
+# Android Build Outputs & Local Config
 local.properties
 *.apk
 *.aab
 *.idsig
 captures/
-.externalNativeBuild
-.cxx/
 
-# --------------------------
-# IOS / XCODE
-# --------------------------
-**/xcuserdata/
-**/*.xcuserstate
-**/*.xcscmblueprint
-DerivedData/
-Pods/
-Podfile.lock
-*.ipa
-
-# --------------------------
-# IDEs - CONFIGURACIÓN PERSONAL
-# --------------------------
+# IDEs (Android Studio / IntelliJ / VS Code)
 .idea/
 !.idea/codeStyles/
 !.idea/runConfigurations/
@@ -54,11 +33,8 @@ Podfile.lock
 *.iws
 *.ipr
 .vscode/
-.fleet/
 
-# --------------------------
-# SISTEMA OPERATIVO
-# --------------------------
+# OS Specific
 .DS_Store
 .DS_Store?
 ._*
@@ -66,9 +42,7 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 
-# --------------------------
-# LOGS Y TEMPORALES
-# --------------------------
+# Logs & Temporary Files
 *.log
 logs/
 tmp/
@@ -77,14 +51,11 @@ temp/
 *.bak
 *.swp
 
-# --------------------------
-# SEGURIDAD - NUNCA SUBIR
-# --------------------------
+# Security & Secrets
 .env
 .env.*
 secrets.*
 *.jks
-*.keystore
 *.p12
 *.pem
 keys/

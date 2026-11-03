@@ -2,17 +2,17 @@
   <img src="docs/assets/logo_bovedakmp.png" width="100" alt="Bóveda Logo">
 </p>
 
-<h1 align="center">Bóveda KMP</h1>
+<h1 align="center">Bóveda Android</h1>
 
 <p align="center">
-  <strong>Offline-First Synchronization Engine (Proof of Concept) built with Kotlin Multiplatform.</strong>
+  <strong>Offline-First Synchronization Engine (Proof of Concept) built with Kotlin & Jetpack Compose for Android.</strong>
 </p>
 
 <p align="center">
   <a href="https://kotlinlang.org"><img src="https://img.shields.io/badge/Kotlin-2.x-blue.svg?style=flat-square&logo=kotlin" alt="Kotlin"></a>
-  <a href="https://www.jetbrains.com/lp/compose-multiplatform/"><img src="https://img.shields.io/badge/Compose-Multiplatform-purple.svg?style=flat-square&logo=android" alt="Compose Multiplatform"></a>
+  <a href="https://www.jetbrains.com/lp/compose-multiplatform/"><img src="https://img.shields.io/badge/Compose-Jetpack-purple.svg?style=flat-square&logo=android" alt="Jetpack Compose"></a>
   <img src="https://img.shields.io/badge/Architecture-Clean%20%2B%20MVI-orange.svg?style=flat-square" alt="Clean Architecture">
-  <img src="https://img.shields.io/badge/Platform-Android%20%7C%20iOS-black.svg?style=flat-square" alt="Platforms">
+  <img src="https://img.shields.io/badge/Platform-Android-black.svg?style=flat-square" alt="Platform">
 </p>
 
 <p align="center">
@@ -25,7 +25,7 @@
 
 ## Overview
 
-**Transparency note:** While Bóveda KMP features a fintech interface, it is **not a financial application**. It is an architectural playground designed to showcase a custom **offline-first synchronization engine**. 
+**Transparency note:** While Bóveda Android features a fintech interface, it is **not a financial application**. It is an architectural playground designed to showcase a custom **offline-first synchronization engine**. 
 
 The UI serves purely as a shell to demonstrate how the underlying engine handles critical operations (like mock transactions) under intermittent or missing network connectivity, guaranteeing idempotency and zero data loss.
 
@@ -44,7 +44,7 @@ The UI serves purely as a shell to demonstrate how the underlying engine handles
 * **Offline-First & Single Source of Truth:** The app uses local SQLite via `SQLDelight`. The engine ensures the UI observes database mutations directly using `StateFlow`, never binding to volatile network calls.
 * **Guaranteed Idempotency:** Each operation generates a unique local UUID used as an `Idempotency-Key`. This prevents the engine from executing the same operation twice during network retries.
 * **Immutable State Machine:** Records are append-only (`PENDING` → `COMPLETED` / `FAILED`); the engine never deletes or rewrites pending intents.
-* **Clean Architecture + MVI:** Total separation of concerns. UI emits intents, domain use cases remain pure, and platform-specific implementations are isolated via `expect/actual`.
+* **Clean Architecture + MVI:** Total separation of concerns. UI emits intents, domain use cases remain pure, and implementations are developed natively for Android.
 
 ---
 
@@ -74,11 +74,11 @@ sequenceDiagram
 
 ## Tech Stack
 
-* **Core & UI:** Kotlin Multiplatform (KMP)
+* **Core & UI:** Kotlin & Jetpack Compose (Android)
 * **Architecture:** Clean Architecture + MVVM
 * **Persistence:** SQLDelight 
 * **Asynchrony & Reactivity:** Kotlin Coroutines
-* **Dependency Injection:** Koin
+* **Dependency Injection:** Service Locator
 * **Version Management:** Gradle Version Catalog (`libs.versions.toml`)
 
 ---
@@ -87,12 +87,12 @@ sequenceDiagram
 The project includes a Gradle Wrapper, eliminating the need for complex configurations. **Clone, sync, and run.**
 
 ```bash
-git clone [https://github.com/JastinBolanos/Boveda-KMP.git](https://github.com/JastinBolanos/Boveda-KMP.git)
+git clone https://github.com/JastinBolanos/Boveda-KMP.git
 cd BovedaKMP
 
 ```
 
 **For Android:**
 - Open the project in Android Studio.
-- Select the `androidApp` configuration.
+- Select the `app` configuration.
 - Press *Run*.
