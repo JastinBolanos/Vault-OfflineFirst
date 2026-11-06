@@ -62,3 +62,7 @@ keys/
 
 # others
 metadata.json
+
+# Public assets & uploads
+public/
+Public/

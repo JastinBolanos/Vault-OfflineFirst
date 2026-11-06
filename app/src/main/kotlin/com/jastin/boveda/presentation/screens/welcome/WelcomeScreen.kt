@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -53,6 +54,35 @@ class WelcomeScreen : Screen {
                 0.68f to Color(0xFFF442B5),
                 1.00f to Color(0xFFD61672)
             )
+        )
+
+        // --- ANIMACIÓN DE FLOTACIÓN Y LEVE REBOTE (TARJETA CORPORATIVA) ---
+        val floatingTransition = rememberInfiniteTransition(label = "floating_card_transition")
+
+        val floatOffsetY by floatingTransition.animateFloat(
+            initialValue = -12f,
+            targetValue = 12f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = 2400,
+                    easing = FastOutSlowInEasing
+                ),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "card_float_y"
+        )
+
+        val floatRotation by floatingTransition.animateFloat(
+            initialValue = -1.2f,
+            targetValue = 1.2f,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = 3200,
+                    easing = EaseInOutSine
+                ),
+                repeatMode = RepeatMode.Reverse
+            ),
+            label = "card_float_rotation"
         )
 
         // --- ACCIÓN DE ENTRADA A LA BÓVEDA ---
@@ -115,11 +145,16 @@ class WelcomeScreen : Screen {
 
                 Spacer(modifier = Modifier.weight(0.4f))
 
-                // --- 3. TARJETA CORPORATIVA ---
+                // --- 3. TARJETA CORPORATIVA FLOTANTE ---
                 Image(
                     painter = painterResource(R.drawable.splash_card_bg),
                     contentDescription = "Card Background",
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .offset(y = floatOffsetY.dp)
+                        .graphicsLayer {
+                            rotationZ = floatRotation
+                        },
                     contentScale = ContentScale.Fit
                 )
 
@@ -130,7 +165,7 @@ class WelcomeScreen : Screen {
 
                     // BOTÓN 1: CORPORATE ACCOUNT
                     Button(
-                        onClick = { onEnterVault("CORPORATE") },
+                        onClick = { navigator.push(com.jastin.boveda.presentation.screens.auth.RegisterScreen()) },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(56.dp),
@@ -142,38 +177,32 @@ class WelcomeScreen : Screen {
                         shape = RoundedCornerShape(12.dp),
                         enabled = !isAnyLoading
                     ) {
-                        if (loadingAction == "CORPORATE") {
-                            PremiumLoadingDots()
-                        } else {
-                            Text(
-                                text = "Open Corporate Account",
-                                color = if (loadingAction == "LOGIN") Color.White.copy(alpha = 0.5f) else Color.White,
-                                fontSize = 16.sp,
-                                fontWeight = FontWeight.SemiBold
-                            )
-                        }
+                        Text(
+                            text = "Open Corporate Account",
+                            color = Color.White,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
                     }
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     // BOTÓN 2: LOG IN TO YOUR VAULT
                     Box(
                         modifier = Modifier
                             .clip(CircleShape)
-                            .clickable(enabled = !isAnyLoading) { onEnterVault("LOGIN") }
+                            .clickable(enabled = !isAnyLoading) {
+                                navigator.push(com.jastin.boveda.presentation.screens.auth.LoginScreen())
+                            }
                             .padding(vertical = 12.dp, horizontal = 24.dp),
                         contentAlignment = Alignment.Center
                     ) {
-                        if (loadingAction == "LOGIN") {
-                            PremiumLoadingDots()
-                        } else {
-                            Text(
-                                text = "Log in to your Vault",
-                                color = if (loadingAction == "CORPORATE") Color.White.copy(alpha = 0.5f) else Color.White,
-                                fontSize = 15.sp,
-                                fontWeight = FontWeight.Medium
-                            )
-                        }
+                        Text(
+                            text = "Log in to your Vault",
+                            color = Color.White,
+                            fontSize = 15.sp,
+                            fontWeight = FontWeight.Medium
+                        )
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
